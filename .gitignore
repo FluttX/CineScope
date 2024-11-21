@@ -41,3 +41,5 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/packages/cine_scope_localization/
+/packages/cine_scope_localization/

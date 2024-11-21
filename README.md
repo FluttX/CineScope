@@ -25,11 +25,46 @@ A modern IMDb clone built with Flutter and BloC state management to explore movi
 ---
 
 ## Tech Stack
-- **Frontend**: Flutter
-- **State Management**: BloC (Business Logic Component)
+
+### Frontend
+- **Flutter**: Cross-platform UI toolkit for building natively compiled applications.
+
+### Backend
 - **Backend API**: [The Movie Database (TMDb) API](https://www.themoviedb.org/documentation/api)
-- **Networking**: Dio or Http package
-- **Local Storage**: Shared Preferences or Hive
+
+### State Management
+- **flutter_bloc**: Implements the BLoC (Business Logic Component) pattern for predictable state management.
+
+### Dependency Injection
+- **get_it**: Service locator for managing dependencies.
+- **injectable**: Code generation for DI setup and easier integration with `get_it`.
+
+### Navigation
+- **go_router**: Declarative routing library for handling dynamic navigation.
+
+### Networking
+- **http**: Lightweight library for HTTP requests.
+- **dio**: Advanced networking library for handling REST APIs and interceptors.
+- **retrofit**: Type-safe HTTP client generator based on Dio.
+
+### Storage
+- **hive**: Lightweight key-value storage for Flutter apps.
+- **hive_flutter**: Hive extension for Flutter with adapters.
+
+### Code Generation
+- **build_runner**: Code generator utility for Dart.
+- **injectable_generator**: Generates boilerplate code for dependency injection.
+- **retrofit_generator**: Generates REST API clients from annotated classes.
+- **json_serializable**: Generates boilerplate for JSON serialization/deserialization.
+- **hive_generator**: Generates type adapters for Hive storage.
+
+### Localization
+- **cine_scope_localization**: Custom package for managing app localization.
+
+### Utilities
+- **equatable**: Simplifies equality comparisons for Dart objects.
+- **logging**: Provides structured logging functionality for debugging.
+
 
 ---
 
@@ -59,7 +94,7 @@ A modern IMDb clone built with Flutter and BloC state management to explore movi
     ``` 
    
 ### Project Structure
-    ```plaintext
+    
     lib/  
     ├── blocs/               # BloC implementations for state management  
     ├── models/              # Movie, TV show, and other data models  
@@ -68,8 +103,7 @@ A modern IMDb clone built with Flutter and BloC state management to explore movi
     ├── widgets/             # Reusable widgets  
     ├── constants/           # API keys, URLs, and app-wide constants  
     ├── utils/               # Helpers and utilities (e.g., network checks)  
-    └── main.dart            # App entry point  
-    ```
+    └── main.dart            # App entry point
 
 ### API Integration
 This project uses the TMDb API to fetch movie and TV show data. Here are the key endpoints used:
@@ -77,6 +111,7 @@ This project uses the TMDb API to fetch movie and TV show data. Here are the key
 - Popular Movies: `/movie/popular`
 - Search: `/search/movie`
 - Movie Details: `/movie/{movie_id}`
+
 For full API documentation, visit [TMDb API Docs](https://developer.themoviedb.org/docs/getting-started)
 
 ### Screenshots

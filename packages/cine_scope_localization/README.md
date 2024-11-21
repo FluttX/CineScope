@@ -1,0 +1,1 @@
+This package contain CineScope app localization.
