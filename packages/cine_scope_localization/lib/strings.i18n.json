@@ -1,0 +1,11 @@
+{
+  "applicationName": "CineScope",
+  "main" : {
+    "tabs" :  {
+      "home": "Home",
+      "search": "Search",
+      "video": "Video",
+      "profile": "Profile"
+    }
+  }
+}
