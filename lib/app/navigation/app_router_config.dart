@@ -1,3 +1,4 @@
+import 'package:cinescope/app/ui/screens/main/main.dart';
 import 'package:cinescope/app/ui/screens/splash/splash.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,11 +16,14 @@ class AppRouterConfig {
     GoRoute(
       path: '/',
       name: AppRoute.root,
-      builder: (context, state) {
-        return SplashScreen(
-          viewModel: SplashScreenViewModel(),
-        );
-      },
+      builder: (context, state) => SplashScreen(
+        viewModel: SplashScreenViewModel(),
+      ),
+    ),
+    GoRoute(
+      path: '/main',
+      name: AppRoute.main,
+      builder: (context, state) => const MainScreen(),
     ),
   ];
 }
