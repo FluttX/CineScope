@@ -16,14 +16,12 @@ class AppRouterConfig {
     GoRoute(
       path: '/',
       name: AppRoute.root,
-      builder: (context, state) => SplashScreen(
-        viewModel: SplashScreenViewModel(),
-      ),
+      builder: (_, __) => SplashScreen(viewModel: SplashScreenViewModel()),
     ),
     GoRoute(
       path: '/main',
       name: AppRoute.main,
-      builder: (context, state) => const MainScreen(),
+      builder: (_, __) => MainScreen(viewModel: MainScreenViewModel()),
     ),
   ];
 }
