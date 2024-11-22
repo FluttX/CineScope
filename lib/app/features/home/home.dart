@@ -1,0 +1,11 @@
+export 'data/mapper/movie_mapper.dart';
+export 'data/remote/movie_api.dart';
+export 'data/remote/responses/movie_response.dart';
+export 'domain/entities/movie_data.dart';
+export 'domain/repositories/movie_repository.dart';
+export 'presentation/bloc/home_bloc.dart';
+export 'presentation/bloc/home_event.dart';
+export 'presentation/bloc/home_state.dart';
+export 'presentation/screens/home_screen.dart';
+export 'presentation/viewmodel/home_screen_viewmodel.dart';
+export 'presentation/widgets/movie_item.dart';

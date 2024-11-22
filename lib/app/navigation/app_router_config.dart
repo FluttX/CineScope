@@ -1,5 +1,8 @@
+import 'package:cinescope/app/features/home/home.dart';
 import 'package:cinescope/app/ui/screens/main/main.dart';
 import 'package:cinescope/app/ui/screens/splash/splash.dart';
+import 'package:cinescope/core/di/inject.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'navigation.dart';
@@ -21,7 +24,10 @@ class AppRouterConfig {
     GoRoute(
       path: '/main',
       name: AppRoute.main,
-      builder: (_, __) => MainScreen(viewModel: MainScreenViewModel()),
+      builder: (_, __) => BlocProvider(
+        create: (_) => HomeBloc(inject()),
+        child: MainScreen(viewModel: MainScreenViewModel()),
+      ),
     ),
   ];
 }

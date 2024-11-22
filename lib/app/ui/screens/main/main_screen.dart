@@ -1,4 +1,4 @@
-import 'package:cinescope/app/ui/screens/main/home/home_screen.dart';
+import 'package:cinescope/app/features/home/home.dart';
 import 'package:cinescope/app/ui/screens/main/main.dart';
 import 'package:cinescope/app/ui/screens/main/profile/profile_screen.dart';
 import 'package:cinescope/app/ui/screens/main/search/search_screen.dart';
@@ -28,11 +28,11 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: PageView(
         controller: _pageController,
-        children: const [
-          HomeScreen(),
-          SearchScreen(),
-          VideoScreen(),
-          ProfileScreen(),
+        children: [
+          HomeScreen(viewModel: HomeScreenViewModel()),
+          const SearchScreen(),
+          const VideoScreen(),
+          const ProfileScreen(),
         ],
       ),
       bottomNavigationBar: AppBottomNavigationBar(controller: _pageController),

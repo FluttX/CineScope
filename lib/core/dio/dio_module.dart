@@ -4,11 +4,11 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 const _baseUrl = "https://api.themoviedb.org/3";
-const _requestTimeOutInSeconds = Duration(seconds: 2);
+const _requestTimeOutInSeconds = Duration(seconds: 7);
 
 @module
 abstract class DioModule {
-  @Named('Authorized')
+  @Named("Authorized")
   @singleton
   Dio getAuthorizedDioClient(TokenRepository tokenRepository) {
     final dioClint = _dioClient();
