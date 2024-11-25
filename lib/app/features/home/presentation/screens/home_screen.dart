@@ -20,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) {
       widget.viewModel.fetchTrendingMovies(context);
+      widget.viewModel.fetchTopRatedMovies(context);
     });
   }
 
@@ -27,41 +28,75 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 32.0),
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0),
-              child: Text(
-                context.t.home.trendingThisWeek,
-                style: AppTypography.title,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 32.0),
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: Text(
+                  context.t.home.trendingThisWeek,
+                  style: AppTypography.title,
+                ),
               ),
-            ),
-            const SizedBox(height: 16.0),
-            SizedBox(
-              height: 312.0,
-              child: BlocBuilder<HomeBloc, HomeState>(
-                buildWhen: (_, state) => state is TrendingMoviesHomeState,
-                builder: (context, state) {
-                  if (state is FetchedTrendingMoviesHomeState) {
-                    return ListView.separated(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: state.movies.length,
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      separatorBuilder: (_, __) => const SizedBox(width: 8.0),
-                      itemBuilder: (_, index) => MovieItemWidget(
-                        index: index + 1,
-                        movie: state.movies[index],
-                      ),
-                    );
-                  }
-                  return const Center(child: CircularProgressIndicator());
-                },
+              const SizedBox(height: 16.0),
+              SizedBox(
+                height: 316.0,
+                child: BlocBuilder<HomeBloc, HomeState>(
+                  buildWhen: (_, state) => state is TrendingMoviesHomeState,
+                  builder: (context, state) {
+                    if (state is FetchedTrendingMoviesHomeState) {
+                      return ListView.separated(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: state.movies.length,
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        separatorBuilder: (_, __) => const SizedBox(width: 8.0),
+                        itemBuilder: (_, index) => MovieItemWidget(
+                          index: index + 1,
+                          movie: state.movies[index],
+                        ),
+                      );
+                    }
+                    return const Center(child: CircularProgressIndicator());
+                  },
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 16.0),
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: Text(
+                  context.t.home.topRated,
+                  style: AppTypography.title,
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              SizedBox(
+                height: 316.0,
+                child: BlocBuilder<HomeBloc, HomeState>(
+                  buildWhen: (_, state) => state is TopRatedMoviesHomeState,
+                  builder: (context, state) {
+                    if (state is FetchedTopRatedMoviesHomeState) {
+                      return ListView.separated(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: state.movies.length,
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        separatorBuilder: (_, __) => const SizedBox(width: 8.0),
+                        itemBuilder: (_, index) => MovieItemWidget(
+                          index: index + 1,
+                          movie: state.movies[index],
+                        ),
+                      );
+                    }
+                    return const Center(child: CircularProgressIndicator());
+                  },
+                ),
+              ),
+              const SizedBox(height: 16.0),
+            ],
+          ),
         ),
       ),
     );

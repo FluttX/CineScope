@@ -11,9 +11,10 @@ class MovieItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 308.0,
+      height: 312.0,
       width: 140.0,
       clipBehavior: Clip.antiAlias,
+      margin: const EdgeInsets.symmetric(vertical: 5.0),
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(12),
@@ -56,7 +57,7 @@ class MovieItemWidget extends StatelessWidget {
                   movie.title,
                   maxLines: 2,
                   softWrap: true,
-                  style: AppTypography.title,
+                  style: AppTypography.text,
                 ),
               ],
             ),

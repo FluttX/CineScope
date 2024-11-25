@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
   HomeBloc(this._movieRepository) : super(InitialHomeState()) {
     on<FetchTrendingMovieHomeEvent>(_handleFetchTrendingMovies);
+    on<FetchTopRatedMovieHomeEvent>(_handleFetchTopRatedMovies);
   }
 
   final MovieRepository _movieRepository;
@@ -21,6 +22,19 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
       emit(FetchedTrendingMoviesHomeState(data));
     } on Object catch (_) {
       emit(FetchFailTrendingMoviesHomeState());
+    }
+  }
+
+  Future<void> _handleFetchTopRatedMovies(
+    FetchTopRatedMovieHomeEvent event,
+    Emitter<HomeState> emit,
+  ) async {
+    emit(FetchingTopRatedMoviesHomeState());
+    try {
+      final data = await _movieRepository.getTopRatedMovies();
+      emit(FetchedTopRatedMoviesHomeState(data));
+    } on Object catch (_) {
+      emit(FetchFailTopRatedMoviesHomeState());
     }
   }
 }

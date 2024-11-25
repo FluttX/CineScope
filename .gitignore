@@ -44,3 +44,4 @@ app.*.map.json
 /packages/cine_scope_localization/
 /packages/cine_scope_localization/
 /lib/core/di/di_container.config.dart
+/lib/app/features/home/data/remote/movie_api.g.dart

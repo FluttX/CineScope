@@ -6,4 +6,8 @@ class HomeScreenViewModel {
   void fetchTrendingMovies(BuildContext context) {
     context.read<HomeBloc>().add(FetchTrendingMovieHomeEvent());
   }
+
+  void fetchTopRatedMovies(BuildContext context) {
+    context.read<HomeBloc>().add(FetchTopRatedMovieHomeEvent());
+  }
 }
