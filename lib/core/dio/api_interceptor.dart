@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:cinescope/domain/entities/token_data.dart';
 import 'package:cinescope/domain/repositories/token_repository.dart';
 import 'package:dio/dio.dart';
 
@@ -14,7 +13,7 @@ class UnauthorizedRequestInterceptor extends QueuedInterceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options.headers.addAll(_baseHeaders);
-    log('${options.method} >>> ${options.uri}');
+    log('${options.method} >>> ${options.uri}', name: 'API');
     log('Query parameters: ${options.queryParameters}');
     log('Request data: ${options.data}');
     super.onRequest(options, handler);
@@ -40,13 +39,14 @@ class AuthorizedRequestInterceptor extends UnauthorizedRequestInterceptor {
 
   final TokenRepository _tokenRepository;
 
-  TokenData get _token => _tokenRepository.getToken();
-  String get _bearerToken => 'Bearer ${_token.accessToken}';
-
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+  Future<void> onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     try {
-      options.headers[HttpHeaders.authorizationHeader] = _bearerToken;
+      options.headers[HttpHeaders.authorizationHeader] =
+          await _tokenRepository.getBearerToken();
       super.onRequest(options, handler);
     } on DioException catch (e) {
       handler.reject(e);
