@@ -67,6 +67,8 @@ dev_dependencies:
     git:
       url: https://github.com/khamidjon/thunder-analysis
   flutter_lints: ^4.0.0
+  bloc_test: ^9.1.7
+  mocktail: ^1.0.4
 
 flutter:
 
